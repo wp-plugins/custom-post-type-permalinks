@@ -61,7 +61,7 @@ class Custom_Post_Type_Permalinks {
 
 	//カスタム投稿タイプのアーカイブのリライトルールの追加
 	function set_archive_rewrite() {
-		$post_types = get_post_types(array("_builtin"=>false));
+		$post_types = get_post_types(array("_builtin"=>false,"publicly_queryable"=>true));
 
 		foreach ($post_types as $post_type):
 			if(!$post_type) continue;
@@ -110,7 +110,7 @@ class Custom_Post_Type_Permalinks {
 	//パーマリンク構造を登録
 	function set_rewrite() {
 		global $wp_rewrite;
-		$post_types = get_post_types(array("_builtin"=>false));
+		$post_types = get_post_types(array("_builtin"=>false,"publicly_queryable"=>true));
 		foreach ($post_types as $post_type):
 	
 			$permalink = get_option($post_type."_structure");			
@@ -294,7 +294,7 @@ class Custom_Post_Type_Permalinks {
 
 	//アンインストール時
 	function uninstall_hook_custom_permalink () {
-		$post_types = get_post_types(array("_builtin"=>false));
+		$post_types = get_post_types(array("_builtin"=>false,"publicly_queryable"=>true));
 		foreach ($post_types as $post_type):
 			delete_option($post_type."_structure");
 		endforeach;
@@ -339,11 +339,10 @@ class Custom_Post_Type_Permalinks_Admin {
 
 
 		
-		$post_types = get_post_types(array("_builtin"=>false));
-		var_dump($post_types);
+		$post_types = get_post_types(array("_builtin"=>false,"publicly_queryable"=>true));
 		foreach ($post_types as $post_type):
 		if($_POST["submit"]){
-			update_option($post_type."_structure",$_POST[$post_type."_structure"]);
+			update_option($post_type."_structure",esc_attr($_POST[$post_type."_structure"]));
 
 			
 		}
