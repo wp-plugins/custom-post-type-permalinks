@@ -28,10 +28,10 @@ That's it. You can access the permalinks setting by going to *Settings -> Permal
 
 == Changelog ==
 
-=0.7.1=
+= 0.7.1 =
 * Bug fix.
 
-=0.7=
+= 0.7 =
 * Add %{taxonomy}% tag.
 * A large number of Bug Fix.
 * Change Setting Page. Use Setting API.
