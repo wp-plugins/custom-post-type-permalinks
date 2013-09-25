@@ -5,7 +5,7 @@ Plugin URI: http://www.torounit.com
 Description:  Add post archives of custom post type and customizable permalinks.
 Author: Toro_Unit
 Author URI: http://www.torounit.com/plugins/custom-post-type-permalinks/
-Version: 0.9.3.2
+Version: 0.9.3.3
 Text Domain: cptp
 License: GPL2 or later
 Domain Path: /language/
@@ -223,7 +223,9 @@ class Custom_Post_Type_Permalinks {
 		endforeach;
 
 		$permalink = trim($permalink, "/" );
-		add_permastruct( $post_type, $permalink, $args->rewrite );
+		$rewrite_args = $args->rewrite;
+		$rewrite_args["walk_dirs"] = false;
+		add_permastruct( $post_type, $permalink, $rewrite_args);
 
 	}
 
@@ -571,7 +573,10 @@ class Custom_Post_Type_Permalinks {
 		$with_front = get_post_type_object($post_type)->rewrite['with_front'];
 
 		//$termlink = str_replace( $term->slug.'/', $this->get_taxonomy_parents( $term->term_id,$taxonomy->name, false, '/', true ), $termlink );
-		$str = rtrim( preg_replace( "/%[a-z_]*%/", "" ,get_option("permalink_structure")) ,'/' );//remove with front
+
+		//拡張子を削除。
+		$str = array_shift(explode(".", get_option("permalink_structure")));
+		$str = rtrim( preg_replace( "/%[a-z_]*%/", "" ,$str) ,'/' );//remove with front
 		$termlink = str_replace($str."/", "/", $termlink );
 
 		if( $with_front === false ) {
