@@ -24,10 +24,12 @@ Donation: Please send amazon.co.jp Gift to donate[at]torounit.com.
 
 == Installation ==
 
-* Download the custom-post-type-permalinks.zip file to your computer.
-* Unzip the file.
-* Upload the `custom-post-type-permalinks` directory to your `/wp-content/plugins/` directory.
-* Activate the plugin through the 'Plugins' menu in WordPress.
+
+1. Download the custom-post-type-permalinks.zip file to your computer.
+1. Unzip the file.
+1. Upload the `custom-post-type-permalinks` directory to your `/wp-content/plugins/` directory.
+1. Activate the plugin through the 'Plugins' menu in WordPress.
+
 
 That's it. You can access the permalinks setting by going to *Settings -> Permalinks*.
 
@@ -40,8 +42,9 @@ That's it. You can access the permalinks setting by going to *Settings -> Permal
 == Changelog ==
 
 = 0.9.3.3 =
+* Fix Override Page Permalink Bug.
 * has_archive Bug Fix.
-* Fixed a bug in the link, including the extension.
+
 
 = 0.9.3.2 =
 * wp_get_archives Bug Fix.
